@@ -1,4 +1,8 @@
 package com.example.ApiGateWayApplication.ApiStrategy;
 
-public class AiModelStrategy {
+public interface AiModelStrategy {
+
+    String getModelName();
+
+    String generateRespose();
 }

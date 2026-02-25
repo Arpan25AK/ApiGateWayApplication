@@ -1,3 +1,33 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: ApiGateWayApplication
+
+  # --- AI Model Configurations ---
+  ai:
+    openai:
+      base-url: https://api.groq.com/openai/v1
+      api-key: ${GROQ_API_KEY:your_groq_key_here}
+      chat:
+        options:
+          model: llama3-8b-8192
+
+    google:
+      genai:
+        api-key: ${GEMINI_API_KEY:your_gemini_key_here}
+        chat:
+          options:
+            model: gemini-2.5-flash
+
+  # --- Redis (For Rate Limiting ) ---
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+# --- Security () ---
+jwt:
+  secret: MySuperSecretEnterpriseKeyThatIsVeryLongAndSecure123!
+  expirationMs: 3600000
