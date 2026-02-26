@@ -3,10 +3,12 @@ package com.example.ApiGateWayApplication.ApiService;
 import com.example.ApiGateWayApplication.ApiStrategy.AiModelStrategy;
 import io.lettuce.core.dynamic.annotation.CommandNaming;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Slf4j
+@Service
 public class RouterService {
 
     private final List<AiModelStrategy> strategies;
