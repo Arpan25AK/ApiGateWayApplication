@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class AskResponse {
 
-    private String prompt;
+    private String response;
 }

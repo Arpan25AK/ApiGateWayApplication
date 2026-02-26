@@ -2,7 +2,9 @@ package com.example.ApiGateWayApplication.ApiStrategy;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.stereotype.Component;
 
+@Component
 public class GeminiStrategy implements AiModelStrategy{
 
     private final ChatClient chatClient;
