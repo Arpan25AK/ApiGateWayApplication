@@ -4,5 +4,5 @@ public interface AiModelStrategy {
 
     String getModelName();
 
-    String generateRespose();
+    String generateResponse(String prompt);
 }
