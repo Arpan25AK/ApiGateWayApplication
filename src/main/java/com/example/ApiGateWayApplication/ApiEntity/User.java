@@ -3,7 +3,7 @@ package com.example.ApiGateWayApplication.ApiEntity;
 import lombok.Data;
 
 @Data
-public class Entity {
+public class User {
 
     private Long id;
     private String username;
