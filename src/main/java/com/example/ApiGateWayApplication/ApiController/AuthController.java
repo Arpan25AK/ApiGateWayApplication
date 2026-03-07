@@ -1,4 +1,32 @@
 package com.example.ApiGateWayApplication.ApiController;
 
+import com.example.ApiGateWayApplication.ApiDTO.AuthRequest;
+import com.example.ApiGateWayApplication.ApiService.AuthService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/auth")
 public class AuthController {
+
+    private final AuthService authService;
+
+    public AuthController(AuthService authService){
+        this.authService = authService;
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<String> signUp(@RequestBody AuthRequest request){
+
+        String responseMessage = authService.registerUser(request.getUsername(), request.getPassword());
+
+        if(responseMessage.startsWith("Error")){
+            return ResponseEntity.badRequest().body(responseMessage);
+        }
+
+        return ResponseEntity.ok(responseMessage);
+    }
 }
