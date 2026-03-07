@@ -34,6 +34,10 @@ spring:
           max-idle: 8
           min-idle: 0
 
+  sql:
+    init:
+      mode: always
+
 # --- Security () ---
 jwt:
   secret: MySuperSecretEnterpriseKeyThatIsVeryLongAndSecure123!
