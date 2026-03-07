@@ -3,10 +3,12 @@ package com.example.ApiGateWayApplication.ApiRepo;
 import com.example.ApiGateWayApplication.ApiEntity.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class userRepo {
 
     private final JdbcTemplate jdbcTemplate;

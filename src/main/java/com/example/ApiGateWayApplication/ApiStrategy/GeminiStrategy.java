@@ -1,6 +1,7 @@
 package com.example.ApiGateWayApplication.ApiStrategy;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.google.genai.GoogleGenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ public class GeminiStrategy implements AiModelStrategy{
 
     private final ChatClient chatClient;
 
-    public GeminiStrategy(OpenAiChatModel geminiChatModel){
+    public GeminiStrategy(GoogleGenAiChatModel geminiChatModel){
         this.chatClient = ChatClient.builder(geminiChatModel).build();
     }
 
