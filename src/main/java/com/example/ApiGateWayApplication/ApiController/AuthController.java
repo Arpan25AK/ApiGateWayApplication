@@ -29,4 +29,16 @@ public class AuthController {
 
         return ResponseEntity.ok(responseMessage);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody AuthRequest request){
+
+        String responseMessage= authService.login(request.getUsername(), request.getPassword());
+
+        if(responseMessage.startsWith("Error")){
+            return ResponseEntity.badRequest().body(responseMessage);
+        }
+
+        return ResponseEntity.ok(responseMessage);
+    }
 }
