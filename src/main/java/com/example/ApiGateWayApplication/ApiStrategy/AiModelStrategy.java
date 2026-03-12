@@ -6,6 +6,6 @@ public interface AiModelStrategy {
 
     String getModelName();
 
-    Flux<String> generateStreamResponse(String prompt,String ConversationId);
+    Flux<String> generateStreamResponse(String prompt,String conversationId);
 
 }

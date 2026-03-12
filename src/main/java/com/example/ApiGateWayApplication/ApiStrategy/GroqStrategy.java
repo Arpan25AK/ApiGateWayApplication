@@ -26,10 +26,14 @@ public class GroqStrategy implements AiModelStrategy{
     }
 
     @Override
-    public Flux<String> generateStreamResponse(String prompt){
+    public Flux<String> generateStreamResponse(String prompt, String conversationId){
         log.info("using Groq model to generate a response");
 
-        return chatClient.prompt(prompt).advisors(new MessageChatMemoryAdvisor(chatMemory, conversationId, 10)).stream().content();
+        return chatClient.prompt(prompt)
+                .advisors(MessageChatMemoryAdvisor.builder(chatMemory)
+                        .conversationId(conversationId)
+                        .build())
+                .stream().content();
 
         }
 }
