@@ -8,5 +8,4 @@ public interface AiModelStrategy {
 
     Flux<String> generateStreamResponse(String prompt);
 
-    String generateResponse(String prompt);
 }
