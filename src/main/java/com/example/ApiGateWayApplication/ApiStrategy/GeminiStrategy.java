@@ -4,6 +4,7 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.google.genai.GoogleGenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 
 @Component
 public class GeminiStrategy implements AiModelStrategy{
@@ -20,8 +21,8 @@ public class GeminiStrategy implements AiModelStrategy{
     }
 
     @Override
-    public String generateResponse(String prompt){
-        return chatClient.prompt(prompt).call().content();
+    public Flux<String> generateStreamResponse(String prompt){
+        return chatClient.prompt(prompt).stream().content();
     }
 
 }
