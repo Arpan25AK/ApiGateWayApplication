@@ -1,7 +1,9 @@
 package com.example.ApiGateWayApplication.ApiController;
 
 import com.example.ApiGateWayApplication.ApiDTO.AuthRequest;
+import com.example.ApiGateWayApplication.ApiDTO.AuthResponse;
 import com.example.ApiGateWayApplication.ApiService.AuthService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,5 +42,17 @@ public class AuthController {
         }
 
         return ResponseEntity.ok(responseMessage);
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refresh(String token){
+
+        try {
+            AuthResponse response = authService.generateNewAccessToken(token);
+            return ResponseEntity.ok(response);
+        }
+        catch(Exception e){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+        }
     }
 }

@@ -31,7 +31,7 @@ public class GateWayController {
             return Flux.just("Error: User needs to wait for a minute for further AI calls");
         }
 
-        return routerService.routeAndExecute(req.getPrompt());
+        return routerService.routeAndExecute(req.getPrompt(), username);
     }
 
 }

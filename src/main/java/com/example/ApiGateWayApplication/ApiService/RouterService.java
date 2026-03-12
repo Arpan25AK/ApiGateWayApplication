@@ -22,8 +22,8 @@ public class RouterService {
         this.redisTemplate = redisTemplate;
     }
 
-    public Flux<String> routeAndExecute(String prompt){
-        String cacheKey = "cache:prompt:" + Math.abs(prompt.hashCode());
+    public Flux<String> routeAndExecute(String prompt, String username){
+        String cacheKey = "cache:" + username + "prompt:" + Math.abs(prompt.hashCode());
         String cachedResponse = (String)redisTemplate.opsForValue().get(cacheKey);
 
         if (cachedResponse != null) {
@@ -38,10 +38,10 @@ public class RouterService {
             if(strategy.getModelName().equalsIgnoreCase(targetModel)){
                 StringBuilder fullResponseBuilder = new StringBuilder();
 
-                return strategy.generateStreamResponse(prompt)
+                return strategy.generateStreamResponse(prompt, username)
                         .doOnNext(chunk -> fullResponseBuilder.append(chunk))
                         .doOnComplete(() -> {
-                            redisTemplate.opsForValue().set(cacheKey, fullResponseBuilder.toString(), Duration.ofHours(1));
+                            redisTemplate.opsForValue().set(cacheKey, fullResponseBuilder.toString(), java.time.Duration.ofHours(1));
                             log.info("💾 Saved new generated stream to Redis cache!");
                         });
             }
