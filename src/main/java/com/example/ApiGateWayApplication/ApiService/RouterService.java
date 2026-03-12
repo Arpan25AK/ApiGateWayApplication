@@ -24,7 +24,7 @@ public class RouterService {
 
     public Flux<String> routeAndExecute(String prompt){
         String cacheKey = "cache:prompt:" + Math.abs(prompt.hashCode());
-        String cachedResponse = redisTemplate.opsForValue().get(cacheKey);
+        String cachedResponse = (String)redisTemplate.opsForValue().get(cacheKey);
 
         if (cachedResponse != null) {
             log.info("⚡ FAST HIT! Returning cached response from Redis.");
